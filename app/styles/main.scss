@@ -1,0 +1,208 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$font-size-base: 22px;
+
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+html, body, .container {
+  height: 100%;
+}
+
+.slide {
+  min-height: 100%;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+pre {
+  background-color: #f0f0f0;
+}
+
+[hljs].transparent {
+  pre, code {
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+  }
+}
+
+.swatch {
+  border-radius: 5px;
+  min-height: 100px;
+  padding: 40px;
+  background-color: $brand-info;
+}
+
+.ng-enter, .ng-hide-remove {
+  background-color: lighten($brand-success, 20%);
+}
+.ng-enter-active, .ng-hide-remove-active {
+  background-color: $brand-success;
+}
+
+.ng-leave, .ng-hide-add {
+  background-color: $brand-danger;
+}
+.ng-leave-active, .ng-hide-add-active {
+  background-color: lighten($brand-danger, 20%);
+}
+
+.ng-move {
+  background-color: lighten($brand-warning, 20%);
+}
+.ng-move-active {
+  background-color: $brand-warning;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* IF */
+.fade {
+  opacity: 1;
+}
+.fade.ng-enter, .fade.ng-leave {
+  transition: 1s linear all;
+}
+
+/* starting animations for enter */
+.fade.ng-enter { opacity: 0.2; }
+/* terminal animations for enter */ 
+.fade.ng-enter.ng-enter-active { opacity: 1; }
+
+/* starting animations for leave */
+.fade.ng-leave { opacity: 1; }
+/* terminal animations for leave */
+.fade.ng-leave.ng-leave-active { opacity: 0.2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SHOW AND HIDE */
+.fade {
+  opacity: 1;
+}
+.fade.ng-hide-add, .fade.ng-hide-remove {
+  transition:1s linear all;
+}
+
+/* starting animations for enter */
+.fade.ng-hide-remove { opacity: 0.2; }
+/* terminal animations for enter */ 
+.fade.ng-hide-remove-active { opacity: 1; }
+
+/* starting animations for leave */
+.fade.ng-hide-add { opacity: 1; }
+/* terminal animations for leave */
+.fade.ng-hide-add-active { opacity: 0.2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CLASS */
+$my-class: 'my-class';
+.#{$my-class}-add, .#{$my-class}-remove {
+  transition: 0.5s linear transform;
+}
+
+.#{$my-class} {
+  transform: scale(1.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* REPEAT */
+.list-group {
+  position: relative;
+}
+.list-group-item {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 1;
+
+  transition: 1s linear all;
+
+  .stagger &.ng-enter-stagger,
+  .stagger &.ng-leave-stagger,
+  .stagger &.ng-move-stagger {
+    transition-delay: 1s;
+    transition-duration: 0s;
+  }
+
+  &.ng-enter, &.ng-move {
+    opacity: 0.2;
+    &.ng-enter-active, &.ng-move-active {
+      opacity: 1;
+    }
+  }
+  &.ng-leave {
+    opacity: 1;
+    &.ng-leave-active {
+      opacity: 0.2;
+    }
+  }
+}
+
+

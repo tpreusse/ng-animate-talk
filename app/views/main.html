@@ -1,0 +1,303 @@
+
+
+<div class="row slide">
+<div class="center">
+<h1>Animation in AngularJS</h1>
+<div hljs>{
+  "name": "Thomas Preusse",
+  "employer": "Neue Zürcher Zeitung",
+  "twitter": "tpreusse"
+}</div>
+</div>
+</div>
+
+
+<div class="row slide">
+<h1>Animation</h1>
+<p>Animation is the process of creating motion and shape change illusion by means of the rapid display of a sequence of static images that minimally differ from each other. The illusion — as in motion pictures in general — is thought to rely on the phi phenomenon. Animators are artists who specialize in the creation of animation. <em><a href="http://en.wikipedia.org/w/index.php?title=Animation&amp;oldid=644781276" target="_blank">Wikipedia</a></em></p>
+</div>
+
+<div class="row slide">
+<h1>Uses of Animation</h1>
+
+<h2>Narration</h2>
+<p>
+<a href="http://drones.pitchinteractive.com/" target="_blank">Drones</a>, 
+<a href="http://guns.periscopic.com/?year=2013" target="_blank">Guns</a>
+</p>
+
+<h2>Encoding</h2>
+<p>
+<a href="http://fukushima.nzz.ch/#die-schulleiterin" target="_blank">Doses of Radiation</a>
+</p>
+
+<h2>Transition</h2>
+<p>
+<a href="http://benfry.com/isometricblocks/" target="_blank">Genome SNPs</a>
+</p>
+
+<h2>Learn more</h2>
+<p>The 10 principles of animation: <a href="https://speakerdeck.com/herrstucki/animation-in-data-visualization" target="_blank">Animation in Data Visualization by Jeremy Stucki</a></p>
+</div>
+
+<div class="row slide">
+<h1>ngAnimate</h1>
+<div hljs language="bash">bower install angular-animate --save</div>
+<div hljs language="js">angular.module('myApp', ['ngAnimate'])</div>
+<p>Automagically enables animation support for core directives like <code>ngIf</code>, <code>ngShow</code>, <code>ngClass</code> and <code>ngRepeat</code>.</p>
+<p>Three ways to perform animations: CSS3 Transitions, CSS3 Animations and JavaScript.</p>
+</div>
+
+
+<div class="row slide">
+<h1>Triggers</h1>
+<p>It adds CSS classes and lets the browser take care of the rest.</p>
+<div class="row">
+  <div class="col-md-12">
+    <p class="swatch">none</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <p class="swatch ng-enter">.ng-enter</p>
+  </div>
+  <div class="col-md-6">
+    <p class="swatch ng-enter-active">.ng-enter-active</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <p class="swatch ng-leave">.ng-leave</p>
+  </div>
+  <div class="col-md-6">
+    <p class="swatch ng-leave-active">.ng-leave-active</p>
+  </div>
+</div>
+</div>
+
+
+<div class="row slide">
+<h1>ngIf</h1>
+<p>Triggers: <code>enter</code> and <code>leave</code></p>
+<div hljs>
+.fade {
+  opacity: 1;
+}
+.fade.ng-enter, .fade.ng-leave {
+  transition:0.5s linear opacity;
+}
+
+/* starting animations for enter */
+.fade.ng-enter { opacity: 0; }
+/* terminal animations for enter */ 
+.fade.ng-enter.ng-enter-active { opacity: 1; }
+
+/* starting animations for leave */
+.fade.ng-leave { opacity: 1; }
+/* terminal animations for leave */
+.fade.ng-leave.ng-leave-active { opacity: 0; }
+</div>
+
+<div offset="offsets.if">
+  <div class="swatch fade text-center" ng-if="scrollTop + (windowHeight / 2) > offsets.if().top">
+    <div hljs class="transparent">
+      <div class="fade" ng-if="scrollTop > offset().top"></div></div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="row slide" ng-style="{marginTop: windowHeight / 2}">
+<h1>ngShow and ngHide</h1>
+<p>Triggers: <code>add</code> and <code>remove</code> of <code>ng-hide</code></p>
+<div class="row">
+  <div class="col-md-6">
+    <p class="swatch ng-hide-remove">.ng-hide-remove</p>
+  </div>
+  <div class="col-md-6">
+    <p class="swatch ng-hide-remove-active">.ng-hide-remove-active</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <p class="swatch ng-hide-add">.ng-hide-add</p>
+  </div>
+  <div class="col-md-6">
+    <p class="swatch ng-hide-add-active">.ng-hide-add-active</p>
+  </div>
+</div>
+<div hljs>
+.fade {
+  opacity: 1;
+}
+.fade.ng-hide-add, .fade.ng-hide-remove {
+  transition:0.5s linear opacity;
+}
+
+/* starting animations for remove */
+.fade.ng-hide-remove { opacity: 0; }
+/* terminal animations for remove */
+.fade.ng-hide-remove.ng-hide-remove-active { opacity: 1; }
+
+/* starting animations for add */
+.fade.ng-hide-add { opacity: 1; }
+/* terminal animations for add */ 
+.fade.ng-hide-add.ng-hide-add-active { opacity: 0; }
+</div>
+
+<div offset="offsets.show">
+  <div class="swatch fade text-center" ng-show="scrollTop + (windowHeight / 2) > offsets.show().top">
+    <div hljs class="transparent">
+      <div class="fade" ng-show="scrollTop > offset().top"></div></div>
+  </div>
+</div>
+</div>
+
+
+<div class="row slide" ng-style="{marginTop: windowHeight / 2}">
+<h1>ngClass</h1>
+<p>Triggers: <code>add</code> and <code>remove</code> of <code>$my-class</code></p>
+<div hljs language="scss">
+.#{$my-class} {
+  transform: scale(1.2);
+}
+
+.#{$my-class}-add, .#{$my-class}-remove {
+  transition:0.5s linear transform;
+}
+
+/* starting animations for add */
+.#{$my-class}-add { }
+/* terminal animations for add */ 
+.#{$my-class}-add.#{$my-class}-add-active { }
+
+/* starting animations for remove */
+.#{$my-class}-remove { }
+/* terminal animations for remove */
+.#{$my-class}-remove.#{$my-class}-remove-active { }
+</div>
+
+<div offset="offsets.class">
+  <div class="text-center" ng-class="{'my-class': scrollTop + (windowHeight / 2) > offsets.class().top}">
+    <div hljs>
+      <div ng-class="{'my-class': scrollTop > offset().top}"></div></div>
+  </div>
+</div>
+</div>
+
+
+<div class="row slide" ng-style="{marginTop: windowHeight / 2}">
+<h1>ngRepeat</h1>
+<p>Triggers: <code>enter</code>, <code>leave</code>, <code>move</code></p>
+<div class="row">
+  <div class="col-md-6">
+    <p class="swatch ng-move">.ng-move</p>
+  </div>
+  <div class="col-md-6">
+    <p class="swatch ng-move-active">.ng-move-active</p>
+  </div>
+</div>
+
+<p>
+  <button class="btn btn-success" type="submit" ng-click="add()">add</button>
+  <button class="btn btn-warning" type="submit" ng-click="shuffle()">shuffle</button>
+  <button class="btn btn-danger" type="submit" ng-click="clear()">clear</button>
+  &nbsp;&nbsp;
+  <label><input type="checkbox" ng-model="stagger"> Stagger</label>
+</p>
+
+<ul class="list-group" ng-class="{stagger: stagger}" ng-style="{height: 52 * list.length}">
+  <li class="list-group-item"
+    ng-repeat="item in list"
+    ng-style="{top: $index * 52}"
+    ng-click="rm(item)">{{ item }}</li>
+</ul>
+
+</div>
+
+
+<div class="row slide" ng-style="{marginTop: windowHeight / 2}">
+
+<div hljs language="scss">
+.list-group {
+  position: relative;
+}
+.list-group-item {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 1;
+
+  transition: 1s linear all;
+}
+
+.stagger .ng-enter-stagger,
+.stagger .ng-leave-stagger,
+.stagger .ng-move-stagger {
+  transition-delay: 1s;
+  transition-duration: 0s;
+}
+
+.ng-enter, .ng-move {
+  opacity: 0.2;
+}
+.ng-enter.ng-enter-active, .ng-move.ng-move-active {
+  opacity: 1;
+}
+.ng-leave {
+  opacity: 1;
+}
+.ng-leave.ng-leave-active {
+  opacity: 0.2;
+}
+
+</div>
+<div hljs><ul class="list-group" ng-class="{stagger: stagger}" ng-style="{height: 52 * list.length}">
+  <li class="list-group-item"
+    ng-repeat="item in list"
+    ng-style="{top: $index * 52}"
+    ng-click="rm(item)">{{ item }}</li>
+</ul></div>
+
+</div>
+
+
+<div class="row slide">
+
+<h1>ngAnimateLayout</h1>
+<p>
+  <a href="http://slides.yearofmoo.com/ng-europe-2014/index.html?29102014#/35/0/" target="_blank">Presentation by Matias Niemelä</a>
+</p>
+
+</div>
+
+
+
+<div class="row slide">
+
+<h1>Pointers</h1>
+<p>
+  <ul>
+    <li><a href="https://docs.angularjs.org/api/ngAnimate" target="_blank">angular docs</a></li>
+    <li><a href="http://www.nganimate.org/" target="_blank">nganimate.org</a></li>
+    <li><a href="http://www.yearofmoo.com/" target="_blank">yearofmoo.com</a></li>
+  </ul>
+</p>
+
+</div>
+
+
+<div class="row slide">
+
+<h1>NZZ is hiring</h1>
+<p>
+  If you would like to join the Web System team and help them improve the website and editor:<br>
+  Michael Knuesel - <a href="mailto:michael.knuesel@nzz.ch?subject=ngJavascriptNinja">michael.knuesel@nzz.ch</a>
+</p>
+<p>
+  More interessted in building data visualizations and interactive apps:<br>
+  Benjamin Schudel - <a href="mailto:benjamin.schudel@nzz.ch?subject=ngInteractiveNewsDeveloper">benjamin.schudel@nzz.ch</a>
+</p>
+
+</div>
